@@ -1,32 +1,35 @@
 #!/usr/bin/env python3
 """
-File5.py - Web Interface and Dashboard Module
-This module handles the web interface and dashboard rendering for the Hugging Face model monitor.
+dashboard.py - Web Interface and Dashboard Module
+
+This module handles the web interface and dashboard rendering
+for the Hugging Face model monitor.
 """
 
-from typing import Dict, List, Any
 from datetime import datetime
 import json
+from typing import Any, Dict, List
+
 
 class WebInterface:
     """
     Handles web interface operations and data preparation.
     Demonstrates separation of concerns - only handles web-related operations.
     """
-    
+
     def __init__(self):
         """Initialize the web interface."""
         self.theme = "dark"
         self.refresh_interval = 30  # seconds
         self.max_displayed_models = 10
-    
+
     def prepare_dashboard_data(self, models: List[Any]) -> Dict[str, Any]:
         """
         Prepare data for dashboard display.
-        
+
         Args:
             models: List of model objects
-            
+
         Returns:
             Dict: Formatted data for dashboard
         """
@@ -39,46 +42,47 @@ class WebInterface:
                 "total_models": len(models),
                 "active_models": 0,
                 "total_size_mb": 0,
-                "average_downloads": 0
+                "average_downloads": 0,
             },
-            "charts": self._prepare_chart_data(models)
+            "charts": self._prepare_chart_data(models),
         }
-        
+
         # Process model data
         total_downloads = 0
-        for model in models[:self.max_displayed_models]:
+        for model in models[: self.max_displayed_models]:
             model_data = self._format_model_for_display(model)
             dashboard_data["models"].append(model_data)
-            
+
             # Update summary
             if model_data["status"] == "active":
                 dashboard_data["summary"]["active_models"] += 1
-            
+
             if model_data["size_mb"]:
                 dashboard_data["summary"]["total_size_mb"] += model_data["size_mb"]
-            
+
             if model_data["downloads"]:
                 total_downloads += model_data["downloads"]
-        
+
         # Calculate averages
         if len(models) > 0:
-            dashboard_data["summary"]["average_downloads"] = total_downloads / len(models)
-        
+            avg_downloads = total_downloads / len(models)
+            dashboard_data["summary"]["average_downloads"] = avg_downloads
+
         return dashboard_data
-    
+
     def _format_model_for_display(self, model: Any) -> Dict[str, Any]:
         """Format a single model for dashboard display."""
-        if hasattr(model, 'get_display_info'):
+        if hasattr(model, "get_display_info"):
             display_info = model.get_display_info()
         else:
             display_info = {
-                "name": getattr(model, 'name', 'Unknown'),
-                "task": getattr(model, 'task_type', 'Unknown'),
-                "library": getattr(model, 'library', 'Unknown'),
+                "name": getattr(model, "name", "Unknown"),
+                "task": getattr(model, "task_type", "Unknown"),
+                "library": getattr(model, "library", "Unknown"),
                 "size": "Unknown",
-                "downloads": "Unknown"
+                "downloads": "Unknown",
             }
-        
+
         return {
             "name": display_info.get("name", "Unknown"),
             "task_type": display_info.get("task", "Unknown"),
@@ -87,9 +91,9 @@ class WebInterface:
             "downloads": self._extract_downloads(display_info.get("downloads", "0")),
             "status": "active",  # Default status
             "health_score": 85,  # Mock health score
-            "last_updated": datetime.now().strftime("%H:%M:%S")
+            "last_updated": datetime.now().strftime("%H:%M:%S"),
         }
-    
+
     def _extract_size_mb(self, size_str: str) -> float:
         """Extract size in MB from size string."""
         try:
@@ -98,7 +102,7 @@ class WebInterface:
             return 0.0
         except (ValueError, AttributeError):
             return 0.0
-    
+
     def _extract_downloads(self, downloads_str: str) -> int:
         """Extract downloads count from downloads string."""
         try:
@@ -106,101 +110,109 @@ class WebInterface:
             return int(str(downloads_str).replace(",", "").replace("Unknown", "0"))
         except (ValueError, AttributeError):
             return 0
-    
+
     def _prepare_chart_data(self, models: List[Any]) -> Dict[str, Any]:
         """Prepare data for dashboard charts."""
         task_distribution = {}
         library_distribution = {}
-        size_ranges = {"Small (<100MB)": 0, "Medium (100-500MB)": 0, "Large (>500MB)": 0}
-        
+        size_ranges = {
+            "Small (<100MB)": 0,
+            "Medium (100-500MB)": 0,
+            "Large (>500MB)": 0,
+        }
+
         for model in models:
             # Task distribution
-            task = getattr(model, 'task_type', 'Unknown')
+            task = getattr(model, "task_type", "Unknown")
             task_distribution[task] = task_distribution.get(task, 0) + 1
-            
+
             # Library distribution
-            library = getattr(model, 'library', 'Unknown')
+            library = getattr(model, "library", "Unknown")
             library_distribution[library] = library_distribution.get(library, 0) + 1
-            
+
             # Size distribution
-            size_mb = getattr(model, 'size_mb', 0) or 0
+            size_mb = getattr(model, "size_mb", 0) or 0
             if size_mb < 100:
                 size_ranges["Small (<100MB)"] += 1
             elif size_mb < 500:
                 size_ranges["Medium (100-500MB)"] += 1
             else:
                 size_ranges["Large (>500MB)"] += 1
-        
+
         return {
             "task_distribution": task_distribution,
             "library_distribution": library_distribution,
             "size_distribution": size_ranges,
-            "performance_trends": self._mock_performance_trends()
+            "performance_trends": self._mock_performance_trends(),
         }
-    
+
     def _mock_performance_trends(self) -> Dict[str, List[float]]:
         """Generate mock performance trend data."""
         import secrets
-        
+
         # Generate 24 hours of mock data (hourly)
         hours = 24
-        memory_trend = [secrets.SystemRandom().uniform(200, 800) for _ in range(hours)]
-        cpu_trend = [secrets.SystemRandom().uniform(10, 60) for _ in range(hours)]
-        response_time_trend = [secrets.SystemRandom().uniform(50, 200) for _ in range(hours)]
-        
+        rng = secrets.SystemRandom()
+        memory_trend = [rng.uniform(200, 800) for _ in range(hours)]
+        cpu_trend = [rng.uniform(10, 60) for _ in range(hours)]
+        response_time_trend = [rng.uniform(50, 200) for _ in range(hours)]
+
         return {
             "memory_usage": memory_trend,
             "cpu_usage": cpu_trend,
             "response_time": response_time_trend,
-            "labels": [f"{i:02d}:00" for i in range(hours)]
+            "labels": [f"{i:02d}:00" for i in range(hours)],
         }
-    
-    def generate_api_response(self, data: Dict[str, Any], status: str = "success") -> str:
+
+    def generate_api_response(
+        self, data: Dict[str, Any], status: str = "success"
+    ) -> str:
         """
         Generate a JSON API response.
-        
+
         Args:
             data: Data to include in response
             status: Response status
-            
+
         Returns:
             str: JSON formatted response
         """
         response = {
             "status": status,
             "timestamp": datetime.now().isoformat(),
-            "data": data
+            "data": data,
         }
-        
+
         return json.dumps(response, indent=2, default=str)
-    
+
     def set_theme(self, theme: str):
         """Set the dashboard theme."""
         if theme in ["light", "dark", "auto"]:
             self.theme = theme
+
 
 class DashboardRenderer:
     """
     Renders HTML dashboard from prepared data.
     Demonstrates single responsibility principle - only handles rendering.
     """
-    
+
     def __init__(self):
         """Initialize the dashboard renderer."""
         self.template_cache = {}
-    
+
     def render_dashboard(self, dashboard_data: Dict[str, Any]) -> str:
         """
         Render the complete HTML dashboard.
-        
+
         Args:
             dashboard_data: Prepared dashboard data
-            
+
         Returns:
             str: Complete HTML dashboard
         """
         html_template = self._get_html_template()
-        
+
         # Replace placeholders with actual data
         html_content = html_template.format(
             title="Hugging Face Model Monitor",
@@ -212,11 +224,12 @@ class DashboardRenderer:
             models_table=self._render_models_table(dashboard_data["models"]),
             charts_script=self._render_charts_script(dashboard_data["charts"]),
             theme_class=dashboard_data.get("theme", "dark"),
-            refresh_interval=dashboard_data.get("refresh_interval", 30) * 1000  # Convert to ms
+            # Convert refresh interval to milliseconds
+            refresh_interval=dashboard_data.get("refresh_interval", 30) * 1000,
         )
-        
+
         return html_content
-    
+
     def _get_html_template(self) -> str:
         """Get the HTML template for the dashboard."""
         return """<!DOCTYPE html>
@@ -406,12 +419,12 @@ class DashboardRenderer:
     </script>
 </body>
 </html>"""
-    
+
     def _render_models_table(self, models: List[Dict[str, Any]]) -> str:
         """Render the models table HTML."""
         if not models:
             return "<p>No models to display</p>"
-        
+
         table_html = """<table class="models-table">
 <thead>
     <tr>
@@ -426,27 +439,27 @@ class DashboardRenderer:
     </tr>
 </thead>
 <tbody>"""
-        
+
         for model in models:
             status_class = f"status-{model['status']}"
             table_html += f"""
     <tr>
-        <td>{model['name']}</td>
-        <td>{model['task_type']}</td>
-        <td>{model['library']}</td>
-        <td>{model['size_mb']:.1f}</td>
-        <td>{model['downloads']:,}</td>
-        <td class="{status_class}">{model['status']}</td>
-        <td>{model['health_score']}%</td>
-        <td>{model['last_updated']}</td>
+        <td>{model["name"]}</td>
+        <td>{model["task_type"]}</td>
+        <td>{model["library"]}</td>
+        <td>{model["size_mb"]:.1f}</td>
+        <td>{model["downloads"]:,}</td>
+        <td class="{status_class}">{model["status"]}</td>
+        <td>{model["health_score"]}%</td>
+        <td>{model["last_updated"]}</td>
     </tr>"""
-        
+
         table_html += """
 </tbody>
 </table>"""
-        
+
         return table_html
-    
+
     def _render_charts_script(self, charts_data: Dict[str, Any]) -> str:
         """Render the JavaScript for charts."""
         return f"""
@@ -455,9 +468,9 @@ class DashboardRenderer:
         new Chart(taskCtx, {{
             type: 'pie',
             data: {{
-                labels: {list(charts_data['task_distribution'].keys())},
+                labels: {list(charts_data["task_distribution"].keys())},
                 datasets: [{{
-                    data: {list(charts_data['task_distribution'].values())},
+                    data: {list(charts_data["task_distribution"].values())},
                     backgroundColor: [
                         '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
                     ]
@@ -483,15 +496,15 @@ class DashboardRenderer:
         new Chart(perfCtx, {{
             type: 'line',
             data: {{
-                labels: {charts_data['performance_trends']['labels']},
+                labels: {charts_data["performance_trends"]["labels"]},
                 datasets: [{{
                     label: 'Memory Usage (MB)',
-                    data: {charts_data['performance_trends']['memory_usage']},
+                    data: {charts_data["performance_trends"]["memory_usage"]},
                     borderColor: '#36A2EB',
                     tension: 0.1
                 }}, {{
                     label: 'CPU Usage (%)',
-                    data: {charts_data['performance_trends']['cpu_usage']},
+                    data: {charts_data["performance_trends"]["cpu_usage"]},
                     borderColor: '#FF6384',
                     tension: 0.1
                 }}]
@@ -514,12 +527,13 @@ class DashboardRenderer:
         }});
         """
 
+
 class MenuSystem:
     """
     Handles console-based menu system for the application.
     Demonstrates user interface abstraction.
     """
-    
+
     def __init__(self):
         """Initialize the menu system."""
         self.menu_options = {
@@ -529,27 +543,27 @@ class MenuSystem:
             "4": ("Generate Report", self._generate_report),
             "5": ("View Performance", self._view_performance),
             "6": ("Settings", self._settings),
-            "0": ("Exit", self._exit)
+            "0": ("Exit", self._exit),
         }
-    
+
     def display_main_menu(self):
         """Display the main menu."""
-        print("\n" + "="*50)
+        print("\n" + "=" * 50)
         print("    HUGGING FACE MODEL MONITOR")
-        print("="*50)
-        
+        print("=" * 50)
+
         for key, (description, _) in self.menu_options.items():
             print(f"{key}. {description}")
-        
+
         print("\nSelect an option (0 to exit):")
-    
+
     def handle_menu_selection(self, choice: str) -> bool:
         """
         Handle menu selection.
-        
+
         Args:
             choice: User's menu choice
-            
+
         Returns:
             bool: True to continue, False to exit
         """
@@ -559,78 +573,80 @@ class MenuSystem:
         else:
             print("Invalid option. Please try again.")
             return True
-    
+
     def _view_models(self) -> bool:
         """Handle view models option."""
         print("\n--- Model List ---")
         print("This would display all monitored models")
         input("Press Enter to continue...")
         return True
-    
+
     def _add_model(self) -> bool:
         """Handle add model option."""
         print("\n--- Add New Model ---")
         print("This would allow adding a new model to monitor")
         input("Press Enter to continue...")
         return True
-    
+
     def _remove_model(self) -> bool:
         """Handle remove model option."""
         print("\n--- Remove Model ---")
         print("This would allow removing a model from monitoring")
         input("Press Enter to continue...")
         return True
-    
+
     def _generate_report(self) -> bool:
         """Handle generate report option."""
         print("\n--- Generate Report ---")
         print("This would generate a performance report")
         input("Press Enter to continue...")
         return True
-    
+
     def _view_performance(self) -> bool:
         """Handle view performance option."""
         print("\n--- Performance Metrics ---")
         print("This would show detailed performance metrics")
         input("Press Enter to continue...")
         return True
-    
+
     def _settings(self) -> bool:
         """Handle settings option."""
         print("\n--- Settings ---")
         print("This would allow configuring application settings")
         input("Press Enter to continue...")
         return True
-    
+
     def _exit(self) -> bool:
         """Handle exit option."""
         print("\nThank you for using Hugging Face Model Monitor!")
         return False
 
+
 # Utility functions for UI operations
 def format_file_size(size_bytes: int) -> str:
     """
     Format file size in human readable format.
-    
+
     Args:
         size_bytes: Size in bytes
-        
+
     Returns:
         str: Formatted size string
     """
-    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+    for unit in ["B", "KB", "MB", "GB", "TB"]:
         if size_bytes < 1024.0:
             return f"{size_bytes:.1f} {unit}"
         size_bytes /= 1024.0
     return f"{size_bytes:.1f} PB"
 
+
 def format_duration(seconds: float) -> str:
     """
     Format duration in human readable format.
-    
+
     Args:
         seconds: Duration in seconds
-        
+
     Returns:
         str: Formatted duration string
     """
@@ -643,15 +659,16 @@ def format_duration(seconds: float) -> str:
         hours = seconds / 3600
         return f"{hours:.1f}h"
 
+
 def create_progress_bar(current: int, total: int, width: int = 30) -> str:
     """
     Create a text-based progress bar.
-    
+
     Args:
         current: Current progress
         total: Total items
         width: Width of progress bar
-        
+
     Returns:
         str: Progress bar string
     """
@@ -659,9 +676,9 @@ def create_progress_bar(current: int, total: int, width: int = 30) -> str:
         progress = 0
     else:
         progress = current / total
-    
+
     filled = int(width * progress)
     bar = "█" * filled + "░" * (width - filled)
     percentage = progress * 100
-    
+
     return f"[{bar}] {percentage:.1f}% ({current}/{total})"

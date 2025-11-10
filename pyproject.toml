@@ -158,7 +158,7 @@ max-complexity = 10
 convention = "google"
 
 [tool.ruff.lint.isort]
-known-first-party = ["File1", "File2", "File3", "File4", "File5"]
+known-first-party = ["models", "model_manager", "configuration", "performance", "dashboard"]
 force-sort-within-sections = true
 
 # Black configuration for code formatting
