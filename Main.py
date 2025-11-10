@@ -6,7 +6,7 @@ A simple project to monitor and manage Hugging Face models.
 
 from configuration import ConfigManager, StorageManager
 from dashboard import DashboardRenderer, WebInterface
-from model_manager import ModelDownloader, ModelManager
+from model_manager import ModelDownloader, ModelExporter, ModelManager
 from models import ModelInfo, ModelValidator
 from performance import MetricsCollector, PerformanceMonitor
 
@@ -61,6 +61,13 @@ def main():
     # Save dashboard
     storage_manager.save_dashboard(dashboard_html)
     print("Dashboard saved successfully!")
+
+    # Export models to JSON and CSV
+    exporter = ModelExporter(model_manager)
+    if exporter.export_to_json("models_export.json"):
+        print("Models exported to models_export.json")
+    if exporter.export_to_csv("models_export.csv"):
+        print("Models exported to models_export.csv")
 
     # Display summary
     print("\n=== Monitor Summary ===")
