@@ -1,0 +1,608 @@
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 34,
+      "row": 9
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File1.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from dataclasses import dataclass\r\nimport re\r\nfrom typing import Any, ClassVar, Dict, Optional\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 173,
+      "row": 66
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File1.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 66
+    },
+    "message": "Line too long (172 > 88)",
+    "noqa_row": 66,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 90,
+      "row": 112
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File1.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 112
+    },
+    "message": "Line too long (89 > 88)",
+    "noqa_row": 112,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 28,
+      "row": 11
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File2.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime\r\nimport json\r\nfrom pathlib import Path\r\nfrom typing import Any, Dict, List, Optional\r\n\r\nfrom File1 import ModelInfo\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 12,
+      "row": 11
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File3.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime\r\nimport json\r\nfrom pathlib import Path\r\nfrom typing import Any, ClassVar, Dict, List, Optional\r\n\r\nimport yaml\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 96,
+      "row": 138
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File3.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 138
+    },
+    "message": "Line too long (95 > 88)",
+    "noqa_row": 138,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 91,
+      "row": 4
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 4
+    },
+    "message": "Line too long (90 > 88)",
+    "noqa_row": 5,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 28,
+      "row": 11
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from dataclasses import dataclass, field\r\nfrom datetime import datetime, timedelta\r\nfrom typing import Any, Dict, List, Optional\r\n\r\nimport psutil\r\n\r\nfrom File1 import ModelInfo\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 101,
+      "row": 102
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 102
+    },
+    "message": "Line too long (100 > 88)",
+    "noqa_row": 102,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 100,
+      "row": 182
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 182
+    },
+    "message": "Line too long (99 > 88)",
+    "noqa_row": 182,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 96,
+      "row": 201
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 201
+    },
+    "message": "Line too long (95 > 88)",
+    "noqa_row": 201,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 97,
+      "row": 244
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 244
+    },
+    "message": "Line too long (96 > 88)",
+    "noqa_row": 244,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 117,
+      "row": 329
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 329
+    },
+    "message": "Line too long (116 > 88)",
+    "noqa_row": 329,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 333
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 333
+    },
+    "message": "Line too long (105 > 88)",
+    "noqa_row": 333,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 116,
+      "row": 337
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 337
+    },
+    "message": "Line too long (115 > 88)",
+    "noqa_row": 337,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 90,
+      "row": 361
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 361
+    },
+    "message": "Line too long (89 > 88)",
+    "noqa_row": 361,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 91,
+      "row": 383
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 383
+    },
+    "message": "Line too long (90 > 88)",
+    "noqa_row": 383,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 90,
+      "row": 421
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 421
+    },
+    "message": "Line too long (89 > 88)",
+    "noqa_row": 421,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 94,
+      "row": 423
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 423
+    },
+    "message": "Line too long (93 > 88)",
+    "noqa_row": 423,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 424
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 424
+    },
+    "message": "Line too long (105 > 88)",
+    "noqa_row": 424,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 95,
+      "row": 447
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 447
+    },
+    "message": "Line too long (94 > 88)",
+    "noqa_row": 447,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 95,
+      "row": 456
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File4.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 456
+    },
+    "message": "Line too long (94 > 88)",
+    "noqa_row": 456,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 98,
+      "row": 4
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 4
+    },
+    "message": "Line too long (97 > 88)",
+    "noqa_row": 5,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 12,
+      "row": 9
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import datetime\r\nimport json\r\nfrom typing import Any, Dict, List\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 91,
+      "row": 65
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 65
+    },
+    "message": "Line too long (90 > 88)",
+    "noqa_row": 65,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 90,
+      "row": 114
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 114
+    },
+    "message": "Line too long (89 > 88)",
+    "noqa_row": 114,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 94,
+      "row": 149
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 149
+    },
+    "message": "Line too long (93 > 88)",
+    "noqa_row": 149,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 91,
+      "row": 158
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 158
+    },
+    "message": "Line too long (90 > 88)",
+    "noqa_row": 158,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 96,
+      "row": 215
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\File5.py",
+    "fix": null,
+    "location": {
+      "column": 89,
+      "row": 215
+    },
+    "message": "Line too long (95 > 88)",
+    "noqa_row": 215,
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 50,
+      "row": 11
+    },
+    "filename": "C:\\Users\\javie\\Desktop\\ITESO\\07 Septimo Semestre\\calidad de software\\practica2_FranciscoJavierDelaTorreSilva\\practica2_code\\Main.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from File1 import ModelInfo, ModelValidator\r\nfrom File2 import ModelDownloader, ModelManager\r\nfrom File3 import ConfigManager, StorageManager\r\nfrom File4 import MetricsCollector, PerformanceMonitor\r\nfrom File5 import DashboardRenderer, WebInterface\r\n\r\n\r\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "noqa_row": 7,
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  }
+]
