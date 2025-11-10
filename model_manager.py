@@ -337,3 +337,119 @@ def search_models(manager: ModelManager, query: str) -> List[ModelInfo]:
             matching_models.append(model)
 
     return matching_models
+
+
+class ModelExporter:
+    """
+    Exports model information to various formats.
+    Demonstrates single responsibility - only handles export operations.
+    """
+
+    def __init__(self, manager: ModelManager):
+        """
+        Initialize the model exporter.
+
+        Args:
+            manager: ModelManager instance to export from
+        """
+        self.manager = manager
+
+    def export_to_json(self, filepath: str) -> bool:
+        """
+        Export all models to JSON format.
+
+        Args:
+            filepath: Path to save the JSON file
+
+        Returns:
+            bool: True if export successful, False otherwise
+        """
+        try:
+            models = self.manager.get_all_models()
+            models_data = [self._model_to_dict(model) for model in models]
+
+            export_data = {
+                "export_time": datetime.now().isoformat(),
+                "total_models": len(models),
+                "models": models_data,
+            }
+
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(export_data, f, indent=2, default=str)
+
+            return True
+        except Exception as e:
+            print(f"Error exporting to JSON: {e}")
+            return False
+
+    def export_to_csv(self, filepath: str) -> bool:
+        """
+        Export all models to CSV format.
+
+        Args:
+            filepath: Path to save the CSV file
+
+        Returns:
+            bool: True if export successful, False otherwise
+        """
+        try:
+            models = self.manager.get_all_models()
+            if not models:
+                return False
+
+            # CSV header
+            headers = [
+                "name",
+                "task_type",
+                "library",
+                "size_mb",
+                "downloads",
+                "last_modified",
+                "tags",
+            ]
+
+            with open(filepath, "w", encoding="utf-8") as f:
+                # Write header
+                f.write(",".join(headers) + "\n")
+
+                # Write model data
+                for model in models:
+                    row = [
+                        model.name,
+                        model.task_type,
+                        model.library,
+                        str(model.size_mb) if model.size_mb else "",
+                        str(model.downloads) if model.downloads else "",
+                        model.last_modified if model.last_modified else "",
+                        "|".join(model.tags) if model.tags else "",
+                    ]
+                    # Escape commas and quotes in values
+                    row = [f'"{val}"' if "," in val else val for val in row]
+                    f.write(",".join(row) + "\n")
+
+            return True
+        except Exception as e:
+            print(f"Error exporting to CSV: {e}")
+            return False
+
+    def _model_to_dict(self, model: ModelInfo) -> Dict[str, Any]:
+        """
+        Convert a ModelInfo object to a dictionary.
+
+        Args:
+            model: ModelInfo object to convert
+
+        Returns:
+            Dict: Model data as dictionary
+        """
+        return {
+            "name": model.name,
+            "task_type": model.task_type,
+            "library": model.library,
+            "size_mb": model.size_mb,
+            "downloads": model.downloads,
+            "last_modified": model.last_modified,
+            "tags": model.tags,
+            "model_id": model.get_model_id(),
+            "is_large": model.is_large_model(),
+        }
